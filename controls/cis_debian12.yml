@@ -937,17 +937,18 @@ controls:
       - l1_server
       - l1_workstation
     rules:
-      - var_timesync_service=systemd-timesyncd
+      # - var_timesync_service=systemd-timesyncd
+      - var_timesync_service=chronyd
       # Choose chrony
       - package_chrony_installed
       # - package_timesyncd_removed # Not written in CIS documentation
-      - service_timesyncd_disable 
+      - service_timesyncd_disabled
       ##
-      # Choose systemd-timesyncd
-      # - package_timesyncd_installed # Not written in CIS documentation
-      - package_chrony_removed
-      # - service_chrony_disable # Not written in CIS documentation
-      ##
+    #   # Choose systemd-timesyncd
+    #   # - package_timesyncd_installed # Not written in CIS documentation
+    #   - package_chrony_removed
+    #   # - service_chrony_disable # Not written in CIS documentation
+    #   ##
       - ntp_single_service_active
     status: automated
     notes: |
@@ -3107,4 +3108,3 @@ controls:
       - file_permission_user_init_files
       - file_permission_user_bash_history
     status: automated
-    

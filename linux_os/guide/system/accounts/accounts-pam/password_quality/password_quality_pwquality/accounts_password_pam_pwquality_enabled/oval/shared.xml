@@ -1,6 +1,5 @@
-{{% if 'ubuntu' in product %}}
+{{% if 'ubuntu' in product or 'debian' in product %}}
 {{% set configuration_files = ["common-password"] %}}
-{{% endif %}}
 <def-group>
   <definition class="compliance" id="{{{ rule_id }}}" version="2">
     {{{ oval_metadata("Check pam_pwquality module is enabled") }}}
@@ -35,3 +34,4 @@
                                test_ref="password_pam_pwquality_enabled_" ~ (file | escape_id)) }}}
   {{% endfor %}}
 </def-group>
+{{% endif %}}
