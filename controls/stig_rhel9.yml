@@ -2,7 +2,7 @@ policy: 'Red Hat Enterprise Linux 9 Security Technical Implementation Guide'
 title: 'Red Hat Enterprise Linux 9 Security Technical Implementation Guide'
 id: stig_rhel9
 source: https://public.cyber.mil/stigs/downloads/
-version: V2R3
+version: V2R4
 reference_type: stigid
 product: rhel9
 levels:
@@ -356,7 +356,7 @@ controls:
             - medium
         title: RHEL 9 must disable the use of user namespaces.
         rules:
-            - sysctl_user_max_user_namespaces
+            - sysctl_user_max_user_namespaces_no_remediation
         status: automated
 
     -   id: RHEL-09-213110
@@ -587,12 +587,22 @@ controls:
             - package_crypto-policies_installed
         status: automated
 
+    -   id: RHEL-09-215101
+        levels:
+            - medium
+        title: RHEL 9 must have the Postfix package installed.
+        status: automated
+        rules:
+            - package_postfix_installed
+
+
     -   id: RHEL-09-215105
         levels:
             - medium
         title: RHEL 9 must implement a FIPS 140-3 compliant systemwide cryptographic policy.
         rules:
             - configure_crypto_policy
+            - fips_crypto_subpolicy
         status: automated
 
     -   id: RHEL-09-231010
@@ -1385,14 +1395,6 @@ controls:
             to prevent unauthorized modification.
         rules:
             - selinux_all_devicefiles_labeled
-        status: automated
-
-    -   id: RHEL-09-232265
-        levels:
-            - medium
-        title: RHEL 9 /etc/crontab file must have mode 0600.
-        rules:
-            - file_permissions_crontab
         status: automated
 
     -   id: RHEL-09-232270
@@ -2657,7 +2659,7 @@ controls:
         title: RHEL 9 must terminate idle user sessions.
         rules:
             - logind_session_timeout
-            - var_logind_session_timeout=15_minutes
+            - var_logind_session_timeout=10_minutes
         status: automated
 
     -   id: RHEL-09-431010
@@ -2679,6 +2681,14 @@ controls:
             - selinux_policytype
             - var_selinux_policy_name=targeted
         status: automated
+
+
+    -   id: RHEL-09-431016
+        title: 'RHEL 9 must elevate the SELinux context when an administrator calls the sudo command.'
+        rules:
+            - selinux_context_elevation_for_sudo
+        status: automated
+
 
     -   id: RHEL-09-431020
         levels:
@@ -3117,14 +3127,6 @@ controls:
         title: RHEL 9 must require authentication to access single-user mode.
         rules:
             - require_singleuser_auth
-        status: automated
-
-    -   id: RHEL-09-611205
-        levels:
-            - medium
-        title: RHEL 9 must prevent system daemons from using Kerberos for authentication.
-        rules:
-            - kerberos_disable_no_keytab
         status: automated
 
     -   id: RHEL-09-631010

@@ -1,13 +1,12 @@
 description: 'This profile contains configuration checks that align to the
 
-    DISA STIG for Red Hat Enterprise Linux 9 V2R3.
+    DISA STIG for Red Hat Enterprise Linux 9 V2R4.
 
 
 
-    In addition to being applicable to Red Hat Enterprise Linux 9, DISA recognizes
-    this
+    In addition to being applicable to Red Hat Enterprise Linux 9, this
 
-    configuration baseline as applicable to the operating system tier of
+    configuration baseline is applicable to the operating system tier of
 
     Red Hat technologies that are based on Red Hat Enterprise Linux 9, such as:
 
@@ -34,8 +33,9 @@ description: 'This profile contains configuration checks that align to the
     standard DISA STIG for Red Hat Enterprise Linux 9 profile.'
 extends: null
 hidden: ''
+status: ''
 metadata:
-    version: V2R3
+    version: V2R4
     SMEs:
     - mab879
     - ggbecker
@@ -302,7 +302,6 @@ selections:
 - file_permissions_cron_hourly
 - file_permissions_cron_monthly
 - file_permissions_cron_weekly
-- file_permissions_crontab
 - file_permissions_etc_audit_auditd
 - file_permissions_etc_group
 - file_permissions_etc_gshadow
@@ -319,6 +318,7 @@ selections:
 - file_permissions_var_log_audit
 - file_permissions_var_log_messages
 - file_sshd_50_redhat_exists
+- fips_crypto_subpolicy
 - firewalld-backend
 - firewalld_sshd_port_enabled
 - gid_passwd_group_same
@@ -337,7 +337,6 @@ selections:
 - harden_sshd_ciphers_opensshserver_conf_crypto_policy
 - install_smartcard_packages
 - installed_OS_is_vendor_supported
-- kerberos_disable_no_keytab
 - kernel_module_atm_disabled
 - kernel_module_bluetooth_disabled
 - kernel_module_can_disabled
@@ -404,6 +403,7 @@ selections:
 - package_pcsc-lite_installed
 - package_policycoreutils-python-utils_installed
 - package_policycoreutils_installed
+- package_postfix_installed
 - package_quagga_removed
 - package_rng-tools_installed
 - package_rsh-server_removed
@@ -441,6 +441,7 @@ selections:
 - rsyslog_remote_loghost
 - security_patches_up_to_date
 - selinux_all_devicefiles_labeled
+- selinux_context_elevation_for_sudo
 - selinux_policytype
 - selinux_state
 - service_auditd_enabled
@@ -525,7 +526,7 @@ selections:
 - sysctl_net_ipv6_conf_default_accept_ra
 - sysctl_net_ipv6_conf_default_accept_redirects
 - sysctl_net_ipv6_conf_default_accept_source_route
-- sysctl_user_max_user_namespaces
+- sysctl_user_max_user_namespaces_no_remediation
 - usbguard_generate_policy
 - use_pam_wheel_for_su
 - wireless_disable_interfaces
@@ -559,7 +560,7 @@ selections:
 - var_password_pam_retry=3
 - var_selinux_policy_name=targeted
 - var_selinux_state=enforcing
-- var_logind_session_timeout=15_minutes
+- var_logind_session_timeout=10_minutes
 - var_accounts_fail_delay=4
 - var_accounts_max_concurrent_login_sessions=10
 - var_accounts_tmout=10_min
@@ -583,13 +584,12 @@ selections:
 - var_user_initialization_files_regex=all_dotfiles
 - login_banner_text=dod_banners
 - var_authselect_profile=sssd
-- sysctl_user_max_user_namespaces.role=unscored
-- sysctl_user_max_user_namespaces.severity=info
 unselected_groups: []
 platforms: !!set {}
 cpe_names: !!set {}
 platform: null
 filter_rules: ''
 policies: []
+single_rule_profile: false
 title: DISA STIG with GUI for Red Hat Enterprise Linux 9
 documentation_complete: true

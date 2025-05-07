@@ -63,7 +63,6 @@ selections:
 - directory_permissions_etc_sysctld
 - dnf-automatic_apply_updates
 - dnf-automatic_security_updates_only
-- enable_authselect
 - enable_pam_namespace
 - ensure_gpgcheck_globally_activated
 - ensure_gpgcheck_local_packages
@@ -242,7 +241,7 @@ selections:
 - systemd_tmp_mount_enabled
 - timer_dnf-automatic_enabled
 - var_password_hashing_algorithm=yescrypt
-- var_password_hashing_algorithm_pam=sha512
+- var_password_hashing_algorithm_pam=yescrypt
 - var_password_pam_unix_rounds=11
 - var_password_pam_minclass=4
 - var_accounts_maximum_age_root=365

@@ -32,6 +32,7 @@ selections:
 - audit_rules_dac_modification_chown
 - audit_rules_dac_modification_fchmod
 - audit_rules_dac_modification_fchmodat
+- audit_rules_dac_modification_fchmodat2
 - audit_rules_dac_modification_fchown
 - audit_rules_dac_modification_fchownat
 - audit_rules_dac_modification_fremovexattr
@@ -125,7 +126,6 @@ selections:
 - disable_ctrlaltdel_burstaction
 - disable_ctrlaltdel_reboot
 - disable_host_auth
-- enable_authselect
 - encrypt_partitions
 - ensure_gpgcheck_globally_activated
 - ensure_gpgcheck_local_packages
@@ -172,9 +172,6 @@ selections:
 - service_crond_enabled
 - service_debug-shell_disabled
 - service_kdump_disabled
-- service_rexec_disabled
-- service_rlogin_disabled
-- service_rsh_disabled
 - service_rsyslog_enabled
 - service_telnet_disabled
 - sshd_disable_compression

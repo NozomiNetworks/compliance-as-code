@@ -51,6 +51,7 @@ selections:
 - audit_rules_dac_modification_chown
 - audit_rules_dac_modification_fchmod
 - audit_rules_dac_modification_fchmodat
+- audit_rules_dac_modification_fchmodat2
 - audit_rules_dac_modification_fchown
 - audit_rules_dac_modification_fchownat
 - audit_rules_dac_modification_fremovexattr
@@ -116,7 +117,6 @@ selections:
 - disable_host_auth
 - disable_users_coredumps
 - display_login_attempts
-- enable_authselect
 - ensure_gpgcheck_globally_activated
 - ensure_gpgcheck_never_disabled
 - ensure_pam_wheel_group_empty

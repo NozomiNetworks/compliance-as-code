@@ -163,18 +163,20 @@ controls:
     title: Ubuntu 24.04 LTS must have the "SSSD" package installed.
     levels:
       - medium
-    related_rules:
+    rules:
+      - package_nss_sss_installed
+      - package_pam_sss_installed
       - package_sssd_installed
-    status: planned
+    status: automated
 
   - id: UBTU-24-100660
     title: Ubuntu 24.04 LTS must use the "SSSD" package for multifactor authentication
       services.
     levels:
       - medium
-    related_rules:
+    rules:
       - service_sssd_enabled
-    status: planned
+    status: automated
 
   - id: UBTU-24-100700
     title: Ubuntu 24.04 LTS must have the "chrony" package installed.
@@ -307,12 +309,12 @@ controls:
       of inactivity.
     levels:
       - medium
-    related_rules:
-      - inactivity_timeout_value=15_minutes
+    rules:
+      - inactivity_timeout_value=10_minutes
       - var_screensaver_lock_delay=immediate
       - dconf_gnome_screensaver_idle_delay
       - dconf_gnome_screensaver_lock_delay
-    status: planned
+    status: automated
 
   - id: UBTU-24-200040
     title: Ubuntu 24.04 LTS must retain a user's session lock until the user reestablishes
@@ -328,18 +330,18 @@ controls:
       timeouts have expired.
     levels:
       - medium
-    related_rules:
-      - var_accounts_tmout=15_min
+    rules:
+      - var_accounts_tmout=10_min
       - accounts_tmout
-    status: planned
+    status: automated
 
   - id: UBTU-24-200090
     title: Ubuntu 24.04 LTS must monitor remote access methods.
     levels:
       - medium
-    related_rules:
+    rules:
       - rsyslog_remote_access_monitoring
-    status: planned
+    status: automated
 
   - id: UBTU-24-200250
     title: Ubuntu 24.04 LTS must automatically remove or disable emergency accounts
@@ -562,21 +564,21 @@ controls:
       or new passwords are established, pwquality must be used.
     levels:
       - medium
-    related_rules:
+    rules:
       - var_password_pam_retry=3
       - accounts_password_pam_enforcing
       - accounts_password_pam_retry
-    status: planned
+    status: automated
 
   - id: UBTU-24-300017
     title: Ubuntu 24.04 LTS must enforce a delay of at least four seconds between
       logon prompts following a failed logon attempt.
     levels:
       - low
-    related_rules:
+    rules:
       - var_password_pam_delay=4000000
       - accounts_passwords_pam_faildelay_delay
-    status: planned
+    status: automated
 
   - id: UBTU-24-300021
     title: Ubuntu 24.04 LTS must require users to reauthenticate for privilege escalation
@@ -743,9 +745,11 @@ controls:
     title: Ubuntu 24.04 LTS must store only encrypted representations of passwords.
     levels:
       - medium
-    related_rules:
-      - set_password_hashing_algorithm_systemauth
-    status: planned
+    rules:
+      - var_password_pam_unix_rounds=100000
+      - set_password_hashing_algorithm_auth_stig
+      - accounts_password_pam_unix_rounds_password_auth
+    status: automated
 
   - id: UBTU-24-400260
     title: Ubuntu 24.04 LTS must enforce password complexity by requiring that at
@@ -851,8 +855,9 @@ controls:
       account for PKI-based authentication.
     levels:
       - high
-    related_rules: []
-    status: planned
+    rules:
+      - sssd_enable_user_cert
+    status: automated
 
   - id: UBTU-24-400375
     title: Ubuntu 24.04 LTS, for PKI-based authentication, Privileged Access Management
@@ -1036,9 +1041,9 @@ controls:
       exploited by adversaries.
     levels:
       - medium
-    related_rules:
-      - permissions_local_var_log
-    status: planned
+    rules:
+      - file_permissions_var_log_stig
+    status: automated
 
   - id: UBTU-24-700020
     title: Ubuntu 24.04 LTS must generate system journal entries without revealing
@@ -1196,8 +1201,9 @@ controls:
     title: Ubuntu 24.04 LTS must be a vendor-supported release.
     levels:
       - medium
-    rules: []
-    status: planned
+    rules: 
+      - installed_OS_is_vendor_supported
+    status: automated
 
   - id: UBTU-24-900040
     title: Ubuntu 24.04 LTS must be configured so that audit configuration files are
@@ -1614,7 +1620,7 @@ controls:
       record storage capacity.
     levels:
       - low
-    related_rules:
+    rules:
       - var_auditd_space_left_percentage=25pc
       - var_auditd_space_left_action=email
       - auditd_data_retention_space_left_action
@@ -1662,9 +1668,9 @@ controls:
     title: Ubuntu 24.04 LTS must configure the audit tools to be group-owned by root.
     levels:
       - medium
-    related_rules:
+    rules:
       - file_groupownership_audit_binaries
-    status: planned
+    status: automated
 
   - id: UBTU-24-901260
     title: Ubuntu 24.04 LTS must have directories that contain system commands set
@@ -1744,6 +1750,6 @@ controls:
       change.
     levels:
       - medium
-    related_rules:
+    rules:
       - audit_rules_immutable
-    status: planned
+    status: automated

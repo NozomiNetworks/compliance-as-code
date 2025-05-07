@@ -33,7 +33,6 @@ selections:
 - dir_perms_world_writable_sticky_bits
 - dnf-automatic_apply_updates
 - dnf-automatic_security_updates_only
-- enable_authselect
 - ensure_gpgcheck_globally_activated
 - ensure_gpgcheck_local_packages
 - ensure_gpgcheck_never_disabled
@@ -52,7 +51,7 @@ selections:
 - set_password_hashing_algorithm_systemauth
 - timer_dnf-automatic_enabled
 - var_password_hashing_algorithm=yescrypt
-- var_password_hashing_algorithm_pam=sha512
+- var_password_hashing_algorithm_pam=yescrypt
 - var_password_pam_unix_rounds=11
 - var_password_pam_minclass=4
 - var_accounts_maximum_age_root=365

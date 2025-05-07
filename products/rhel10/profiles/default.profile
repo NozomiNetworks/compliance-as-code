@@ -21,3 +21,12 @@ selections:
   - configure_tmux_lock_command
   - configure_tmux_lock_keybinding
   - audit_rules_session_events
+  - enable_authselect
+  - audit_rules_login_events
+  - audit_rules_unsuccessful_file_modification
+  - configure_openssl_tls_crypto_policy
+  - audit_rules_privileged_commands_pt_chown
+  - package_iprutils_removed
+  - service_rlogin_disabled
+  - service_rsh_disabled
+  - service_rexec_disabled

@@ -9,6 +9,7 @@ controls:
             - audit_rules_dac_modification_chown
             - audit_rules_dac_modification_fchmod
             - audit_rules_dac_modification_fchmodat
+            - audit_rules_dac_modification_fchmodat2
             - audit_rules_dac_modification_fchown
             - audit_rules_dac_modification_fchownat
             - audit_rules_dac_modification_fremovexattr
@@ -59,7 +60,6 @@ controls:
             - audit_rules_privileged_commands_passwd
             - audit_rules_privileged_commands_postdrop
             - audit_rules_privileged_commands_postqueue
-            - audit_rules_privileged_commands_pt_chown
             - audit_rules_privileged_commands_ssh_agent
             - audit_rules_privileged_commands_ssh_keysign
             - audit_rules_privileged_commands_su
